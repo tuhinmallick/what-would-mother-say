@@ -36,5 +36,4 @@ def start_haystack(openai_key, serper_key):
 
 @st.cache_data(show_spinner=True)
 def run_agent(_agent, question):
-    result = _agent.run(question)
-    return result
+    return _agent.run(question)

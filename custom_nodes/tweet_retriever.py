@@ -5,7 +5,7 @@ class TwitterRetriever(BaseComponent):
     outgoing_edges = 1
     
     def __init__(self, bearer_token: str, last_k_tweets: int = 10):
-        self.headers = {"Authorization": "Bearer {}".format(bearer_token)}
+        self.headers = {"Authorization": f"Bearer {bearer_token}"}
         self.last_k_tweets = last_k_tweets
         
     def run(self, query: str, last_k_tweets: int = None):
@@ -21,12 +21,11 @@ class TwitterRetriever(BaseComponent):
                 twitter_stream += tweet["text"] + '\n'
         except Exception as e:
             twitter_stream = ["Please make sure you are providing a correct, public twitter account"]
-        
-        output = {
-            "results":  f"{twitter_stream}",
+
+        return {
+            "results": f"{twitter_stream}",
             "username": query,
         }
-        return output
 
     def run_batch(self):
         pass
